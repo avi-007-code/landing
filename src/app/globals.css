@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-padding-top: 80px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ---------- Brand · Main page — NEW palette (v2) ---------- */
+  --color-ink-950: #070b18;
+  --color-ink-900: #0c1322;
+  --color-ink-800: #141c30;
+  --color-mist: #f5f7fc;
+  --color-brand-600: #4338ca;
+  --color-brand-500: #4f46e8;
+  --color-brand-soft: #ececfd;
+
+  /* ---------- Brand · Campus page (energetic) ---------- */
+  --color-cream: #fff4e6;
+  --color-paper: #fffaf0;
+  --color-warm-ink: #241209;
+  --color-coral: #ff4a3d;
+  --color-orange: #ff7a18;
+  --color-lime: #d8ff3e;
+  --color-violet: #7c3aed;
+
+  /* ---------- Fonts ---------- */
+  --font-display: var(--font-sora);
+  --font-campus: var(--font-anton);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
   }
 }
 
+.animate-float {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes tabIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-in {
+  animation: tabIn 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-tab-in {
+    animation: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --ink: #16181d;
+  --ink-soft: #4b5060;
+  --line: rgba(22, 24, 29, 0.1);
+  --primary: #4f46e8;
+  --primary-strong: #4338ca;
+  --primary-soft: #ececfd;
+  --secondary: #ff4a3d;
+  --secondary-soft: #ffe9e6;
+  --on-primary: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d0f14;
+  --surface: #14171f;
+  --ink: #f2f3f7;
+  --ink-soft: #a7acbb;
+  --line: rgba(242, 243, 247, 0.12);
+  --primary: #8183ff;
+  --primary-strong: #6366f1;
+  --primary-soft: rgba(99, 102, 241, 0.2);
+  --secondary: #ff6a5c;
+  --secondary-soft: rgba(255, 74, 61, 0.18);
+  --on-primary: #0d0f14;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(10 17 40 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(10 17 40 / 0.055) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+.bg-grid-cream {
+  background-image:
+    linear-gradient(to right, rgb(36 18 9 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(36 18 9 / 0.07) 1px, transparent 1px);
+  background-size: 46px 46px;
 }

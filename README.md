@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampusLoop — Landing Pages
+
+Next.js 16 (App Router) + Tailwind CSS v4 + TanStack Query. Built for the CampusLoop platform (student club & event management).
+
+## Pages
+
+### `/` — Main product landing page (business model)
+- Hero with product dashboard visual
+- Partner college logo cloud
+- Animated stats band (TanStack Query data-driven where applicable)
+- Features grid (“What we provide”)
+- How it works
+- Testimonials
+- CTA + footer
+
+Design language: deep ink navy, paper white, electric indigo brand. Professional, corporate, conversion-focused.
+
+### `/[college]` — Campus homepage (energetic / creative)
+- Big display hero (“THE STUDENTS ARE OUT.” style headlines)
+- Marquee strip
+- Events carousel (scroll-snap, TanStack Query-driven)
+- Spotlight event band
+- Clubs grid (TanStack Query-driven)
+
+Design language: warm cream, warm ink, coral / lime / violet, Anton display type, hard offset shadows, stickers.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Main landing: `/`
+- Campus pages: `/northwood`, `/crestview`, `/bellavista`, `/westbrook` (add more in `src/lib/data.ts`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech
 
-## Learn More
+- `next/font/google` — Anton (campus display), Sora (marketing display), Inter (body)
+- Tailwind CSS v4 (`@theme` tokens in `src/app/globals.css`)
+- `@tanstack/react-query` — client data fetching (`src/lib/queries.ts`)
+- Mock data in `src/lib/data.ts` — swap for real API later
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/
+    page.tsx              # Main landing
+    [college]/page.tsx    # Campus homepage (dynamic)
+    layout.tsx / globals.css
+  components/
+    Providers.tsx         # QueryClientProvider
+    marketing/            # Main page sections
+    campus/               # Campus page sections
+  lib/
+    data.ts               # Types + mock colleges/clubs/events
+    queries.ts            # TanStack Query keys & hooks
+```
